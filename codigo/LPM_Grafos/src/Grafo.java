@@ -1,3 +1,5 @@
+import java.io.File;
+
 /** 
  * MIT License
  *
@@ -59,7 +61,21 @@ public class Grafo {
     }
 
     public void salvar(String nomeArquivo){
+        File file = new File(nomeArquivo);
         
+        Vertice[] abbVertices = vertices.allElements(new Vertice[]{});
+        
+        for (Vertice vertice : abbVertices) {
+        	
+        	Aresta[] allArestas = vertice.todasAsArestas();
+        	
+        	for (Aresta aresta : allArestas) {
+        		
+        		Vertice destino = new Vertice(aresta.destino());
+        		
+        		
+        	}
+        }
     }
     
     /**

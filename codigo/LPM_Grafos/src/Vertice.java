@@ -76,6 +76,9 @@ public class Vertice {
         return this.arestas.remove(destino);
     }
   
+    public Aresta[] todasAsArestas() {
+    	return this.arestas.allElements(new Aresta[] {});
+    }
   
     public int grau(){
         return Integer.MIN_VALUE;
