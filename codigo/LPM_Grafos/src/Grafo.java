@@ -30,8 +30,18 @@ public class Grafo {
     private ABB<Vertice> vertices;
 
     public static Grafo grafoCompleto(int ordem){
-        return null;
-    }
+
+        Grafo g = new Grafo("GrafoCompleto");
+
+        for(int i = 1; i < ordem; i++)
+            for(int j = i + 1; i <= ordem; j++){
+
+            }
+            return null;
+        }
+        
+    
+    
 
     /**
      * Construtor. Cria um grafo vazio com um nome escolhido pelo usuário. Em caso de nome não informado 
@@ -43,7 +53,7 @@ public class Grafo {
         else
             this.nome = nome;
         this.vertices = new ABB<>();
-    }
+        }
 
     /**
      * Retorna o nome do grafo (string), caso seja necessário em outras classes/sistemas
