@@ -1,4 +1,5 @@
 import java.io.File;
+
 /** 
  * MIT License
  *
@@ -45,7 +46,7 @@ public class Grafo {
             }
         return g;
     }
-    
+
     /**
      * Construtor. Cria um grafo vazio com um nome escolhido pelo usuário. Em caso
      * de nome não informado
@@ -104,17 +105,12 @@ public class Grafo {
         return this.vertices.add(id, novo);
     }
 
-    /**
-     * Remove um véricie do grafos, caso o vérticie exista no grafo.
-     * @param id
-     * @return O vérticie removido, ou null se não existir.
-     */
-    public Vertice removeVertice(int id){
-        return this.vertices.remove(id);
+    public Vertice removeVertice(int id) {
+        return null;
     }
 
-    public Vertice existeVertice(int idVertice){
-        return vertices.find(idVertice);
+    public Vertice existeVertice(int idVertice) {
+        return null;
     }
 
     /**
@@ -147,43 +143,12 @@ public class Grafo {
         return null;
     }
 
-    /**
-     * Gera um subgrafo a partir das indicações dos vértices do grafo original
-     * @param vertices Lista de vértices do grafo original
-     * @return Um subrgrafos com os vértices da lista
-     */
-    public Grafo subGrafo(Lista<Integer> vertices){
-        Grafo subgrafo = new Grafo("Subgrafo de "+this.nome); subgrafo.vertices = this.vertices;
+    public boolean completo() {
+        return false;
+    }
 
-        boolean estaNaLista = false;
-        int id;
-
-        Integer[] array = new Integer[vertices.size()];
-        Integer[] allData = vertices.allElements(array);
-        
-        Lista<Integer> verticesExcluidos = new Lista<Integer>();
-
-        for(int i = 1; i <= subgrafo.vertices.size(); i++) {
-            for(int j = 0; j < allData.length; j++) {
-                if(i == allData[j]) {
-                    estaNaLista = true;
-                    break;
-                }
-            }
-
-            if(estaNaLista == false) {
-                verticesExcluidos.add(i);
-            }
-
-            estaNaLista = false;
-        }
-
-        int tamanho = verticesExcluidos.size();
-
-        for(int i = 0; i < tamanho; i++) {
-            id = verticesExcluidos.remove(0);
-            subgrafo.removeVertice(id);
-        }
+    public Grafo subGrafo(Lista<Integer> vertices) {
+        Grafo subgrafo = new Grafo("Subgrafo de " + this.nome);
 
         return subgrafo;
     }

@@ -47,13 +47,8 @@ public class Vertice {
         return this.id;
     }
     
-    /**
-     * Adiciona uma aresta neste vérticie para um destino
-     * @param dest Vérticie de destino
-     * @return TRUE se foi inserida, FALSE caso já existisse e não foi inserida.
-     */
     public boolean addAresta(int destino){
-        return this.arestas.add(destino, new Aresta(destino));
+        return false;
     }
 
     /**
@@ -84,13 +79,9 @@ public class Vertice {
     public Aresta[] todasAsArestas() {
     	return this.arestas.allElements(new Aresta[] {});
     }
-    
-    /**
-     * Retorna o grau do vérticie
-     * @return Inteiro que representa o número de vérticies
-     */
+  
     public int grau(){
-        return this.arestas.size();
+        return Integer.MIN_VALUE;
     }
 
     /**
