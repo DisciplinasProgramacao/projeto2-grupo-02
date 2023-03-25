@@ -29,6 +29,15 @@ public class Aresta {
     private boolean visitada;
 
     /**
+     * Construtor para arestas sem peso. A aresta é criada como não-visitada.
+     * @param destino Véricie de destino
+     */
+    public Aresta(int destino) {
+        this.destino = destino;
+        this.visitada = false;
+    }
+
+    /**
      * Construtor para arestas com peso. A aresta é criada como não-visitada.
      * @param peso Peso da aresta
      * @param dest Vértice de destino

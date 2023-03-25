@@ -86,7 +86,7 @@ public class ABB<T> {
      * @param array Vetor/array para abrigar os elementos da árvore. Deve ser previamente criado.
      * @return Outro vetor/array com os elementos da árvore.
      */
-    public T[] allElements(T[] array){
+    public T[] allElements( T[]array){
         T[] allData = this.data.values().toArray(array);
         return allData;
     }
