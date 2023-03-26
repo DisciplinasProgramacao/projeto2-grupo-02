@@ -27,25 +27,25 @@ import java.io.File;
 /**
  * Classe básica para um Grafo simples não direcionado.
  */
-public class Grafo {
+public abstract class Grafo {
     public final String nome;
     protected ABB<Vertice> vertices;
 
-    public static Grafo grafoCompleto(int ordem) {
-
-        Grafo g = new Grafo("GrafoCompleto");
-
-        // Criação dos vertices
-        for (int i = 1; i <= ordem; i++) {
-            g.addVertice(i);
-        }
-        // Criação das arestas
-        for (int i = 1; i < ordem; i++)
-            for (int j = i + 1; i <= ordem; j++) {
-                g.addAresta(i, j, 0);
-            }
-        return g;
-    }
+//    public static Grafo grafoCompleto(int ordem) {
+//
+//        Grafo g = new Grafo("GrafoCompleto");
+//
+//        // Criação dos vertices
+//        for (int i = 1; i <= ordem; i++) {
+//            g.addVertice(i);
+//        }
+//        // Criação das arestas
+//        for (int i = 1; i < ordem; i++)
+//            for (int j = i + 1; i <= ordem; j++) {
+//                g.addAresta(i, j, 0);
+//            }
+//        return g;
+//    }
 
     /**
      * Construtor. Cria um grafo vazio com um nome escolhido pelo usuário. Em caso
@@ -88,29 +88,6 @@ public class Grafo {
     }
 
     /**
-     * Adiciona um vértice com o id especificado. Ignora a ação e retorna false se
-     * já existir
-     * um vértice com este id
-     * 
-     * @param id O identificador do vértice a ser criado/adicionado
-     * @return TRUE se houve a inclusão do vértice, FALSE se já existia vértice com
-     *         este id
-     */
-    public boolean addVertice(int id) {
-        Vertice novo = new Vertice(id);
-        return this.vertices.add(id, novo);
-    }
-
-    /**
-     * 
-     * @param id O Identificador do vértice a ser removido
-     * @return Vértice removido
-     */
-    public Vertice removeVertice(int id) {
-        return vertices.remove(id);
-    }
-
-    /**
      * 
      * @param idVertice O indentificado do vértice procurado
      * @return Vértice procurado ou null caso não exista
@@ -119,31 +96,6 @@ public class Grafo {
         return vertices.find(idVertice);
     }
 
-    /**
-     * Adiciona uma aresta entre dois vértices do grafo, caso os dois vértices
-     * existam no grafo.
-     * Caso a aresta já exista, ou algum dos vértices não existir, o comando é
-     * ignorado e retorna FALSE.
-     * 
-     * @param origem  Vértice de origem
-     * @param destino Vértice de destino
-     * @param peso    Peso da aresta
-     * @return TRUE se foi inserida, FALSE caso contrário
-     */
-    public boolean addAresta(int origem, int destino, int peso) {
-        boolean adicionou = false;
-        Vertice saida = this.existeVertice(origem);
-        Vertice chegada = this.existeVertice(destino);
-        if (saida != null && chegada != null) {
-            adicionou = (saida.addAresta(destino, peso) && chegada.addAresta(origem, peso));
-        }
-        return adicionou;
-
-    }
-
-    public Aresta removeAresta(int origem, int destino) {
-        return null;
-    }
 
     public Aresta existeAresta(int verticeA, int verticeB) {
         return null;
@@ -153,45 +105,45 @@ public class Grafo {
         return false;
     }
 
-    /**
-     * Gera um subgrafo a partir das indicações dos vértices do grafo original
-     * @param vertices Lista de vértices do grafo original
-     * @return Um subrgrafos com os vértices da lista
-     */
-    public Grafo subGrafo(Lista<Integer> vertices) {
-        Grafo subgrafo = new Grafo("Subgrafo de "+this.nome); subgrafo.vertices = this.vertices;
-       
-        boolean estaNaLista = false;
-        int id;
-       
-        Integer[] array = new Integer[vertices.size()];
-        Integer[] allData = vertices.allElements(array);
-               
-        Lista<Integer> verticesExcluidos = new Lista<Integer>();
-       
-        for(int i = 1; i <= subgrafo.vertices.size(); i++) {
-            for(int j = 0; j < allData.length; j++) {
-                if(i == allData[j]) {
-                    estaNaLista = true;
-                    break;
-                }
-            }
-       
-            if(estaNaLista == false) {
-                verticesExcluidos.add(i);
-             }
-       
-            estaNaLista = false;
-        }
-       
-        int tamanho = verticesExcluidos.size();
-        for(int i = 0; i < tamanho; i++) {
-             id = verticesExcluidos.remove(0);
-                subgrafo.removeVertice(id);
-            }
-       
-        return subgrafo;
-    }
+//    /**
+//     * Gera um subgrafo a partir das indicações dos vértices do grafo original
+//     * @param vertices Lista de vértices do grafo original
+//     * @return Um subrgrafos com os vértices da lista
+//     */
+//    public Grafo subGrafo(Lista<Integer> vertices) {
+//        Grafo subgrafo = new Grafo("Subgrafo de "+this.nome); subgrafo.vertices = this.vertices;
+//
+//        boolean estaNaLista = false;
+//        int id;
+//
+//        Integer[] array = new Integer[vertices.size()];
+//        Integer[] allData = vertices.allElements(array);
+//
+//        Lista<Integer> verticesExcluidos = new Lista<Integer>();
+//
+//        for(int i = 1; i <= subgrafo.vertices.size(); i++) {
+//            for(int j = 0; j < allData.length; j++) {
+//                if(i == allData[j]) {
+//                    estaNaLista = true;
+//                    break;
+//                }
+//            }
+//
+//            if(estaNaLista == false) {
+//                verticesExcluidos.add(i);
+//             }
+//
+//            estaNaLista = false;
+//        }
+//
+//        int tamanho = verticesExcluidos.size();
+//        for(int i = 0; i < tamanho; i++) {
+//             id = verticesExcluidos.remove(0);
+//                subgrafo.removeVertice(id);
+//            }
+//
+//        return subgrafo;
+//    }
 
     public int tamanho() {
         return Integer.MIN_VALUE;
