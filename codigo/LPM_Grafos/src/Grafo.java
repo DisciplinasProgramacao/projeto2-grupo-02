@@ -29,7 +29,7 @@ import java.io.File;
  */
 public class Grafo {
     public final String nome;
-    private ABB<Vertice> vertices;
+    protected ABB<Vertice> vertices;
 
     public static Grafo grafoCompleto(int ordem) {
 
@@ -68,10 +68,6 @@ public class Grafo {
      */
     public String nome() {
         return this.nome;
-    }
-
-    public void carregar(String nomeArquivo) {
-
     }
 
     public void salvar(String nomeArquivo) {
