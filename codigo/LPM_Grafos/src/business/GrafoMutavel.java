@@ -27,13 +27,9 @@ public abstract class GrafoMutavel extends Grafo {
     public abstract void carregar(String nomeArquivo) throws FileNotFoundException;
 
     /**
-     * Adiciona um vértice com o id especificado. Ignora a ação e retorna false se
-     * já existir
-     * um vértice com este id
-     *
+     * Adiciona um vértice com o id especificado.
      * @param id O identificador do vértice a ser criado/adicionado
-     * @return TRUE se houve a inclusão do vértice, FALSE se já existia vértice com
-     *         este id
+     * @return TRUE se houve a inclusão do vértice, FALSE se já existia vértice com este id
      */
     public boolean addVertice(int id) {
         Vertice novo = new Vertice(id);
@@ -41,15 +37,29 @@ public abstract class GrafoMutavel extends Grafo {
     }
 
     /**
-     *
+     * Remove todas as arestas que chegam no vértice e remove o vértice.
      * @param id O Identificador do vértice a ser removido
-     * @return Vértice removido
+     * @return O vértice removido ou null caso não exista.
      */
     public Vertice removeVertice(int id) {
-        //Remover arestas que apontam para o vértice removido antes de remover o vértie.
+        Vertice[] array = new Vertice[vertices.size()];
+        Vertice[] todosVertices = vertices.allElements(array);
+        Aresta temp;
+
+        for(int i = 1; i <= todosVertices.length; i++) {
+            temp = todosVertices[i].existeAresta(id);
+            if(temp != null) {
+                todosVertices[i].removeAresta(id);
+            }
+        }
+
         return vertices.remove(id);
     }
 
+    /**
+     * Salva grafo em um arquivo 
+     * @param nomeArquivo Nome do arquivo em que o grafo será salvo
+     */
     public void salvar(String nomeArquivo) {
         File file = new File("./" + nomeArquivo);
         

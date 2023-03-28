@@ -62,10 +62,13 @@ public class Vertice {
         return this.arestas.add(destino, new Aresta(peso, destino));
     }
 
-    
+    /**
+     * Verifica se existe uma aresta partindo desse vétice e chegando em destino
+     * @param destino Id do vétice de destino
+     * @return A aresta ou null se não existir a aresta.
+     */
     public Aresta existeAresta(int destino){
-        return null;
-
+        return arestas.find(destino);
     }
     
     /**

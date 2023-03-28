@@ -114,54 +114,61 @@ public abstract class Grafo {
         return vertices.find(idVertice);
     }
 
-
+    /**
+     * Verifica se existe uma aresta entre A e B
+     * @param verticeA Vertice de partida
+     * @param verticeB Vertice de chegada
+     * @return A aresta ente A e B ou null caso não exista
+     */
     public Aresta existeAresta(int verticeA, int verticeB) {
-        return null;
+        Vertice verticePartida = vertices.find(verticeA);
+        return verticePartida.existeAresta(verticeB);
     }
 
     public boolean completo() {
         return false;
     }
 
-//    /**
-//     * Gera um subgrafo a partir das indicações dos vértices do grafo original
-//     * @param vertices Lista de vértices do grafo original
-//     * @return Um subrgrafos com os vértices da lista
-//     */
-//    public Grafo subGrafo(Lista<Integer> vertices) {
-//        Grafo subgrafo = new Grafo("Subgrafo de "+this.nome); subgrafo.vertices = this.vertices;
-//
-//        boolean estaNaLista = false;
-//        int id;
-//
-//        Integer[] array = new Integer[vertices.size()];
-//        Integer[] allData = vertices.allElements(array);
-//
-//        Lista<Integer> verticesExcluidos = new Lista<Integer>();
-//
-//        for(int i = 1; i <= subgrafo.vertices.size(); i++) {
-//            for(int j = 0; j < allData.length; j++) {
-//                if(i == allData[j]) {
-//                    estaNaLista = true;
-//                    break;
-//                }
-//            }
-//
-//            if(estaNaLista == false) {
-//                verticesExcluidos.add(i);
-//             }
-//
-//            estaNaLista = false;
-//        }
-//
-//        int tamanho = verticesExcluidos.size();
-//        for(int i = 0; i < tamanho; i++) {
-//             id = verticesExcluidos.remove(0);
-//                subgrafo.removeVertice(id);
-//            }
-//
-//        return subgrafo;
-//    }
+   /**
+    * Gera um subgrafo a partir das indicações dos vértices do grafo original
+    * @param vertices Lista de vértices do grafo original
+    * @return Um subrgrafos com os vértices da lista
+    */
+   public Grafo subGrafo(Lista<Integer> vertices) {
+       GrafoDirecionado subgrafo = new GrafoDirecionado("Subgrafo de "+this.nome); subgrafo.vertices = this.vertices;
+
+       boolean estaNaLista = false;
+       int id;
+
+       Integer[] array = new Integer[vertices.size()];
+       Integer[] allData = vertices.allElements(array);
+
+       Lista<Integer> verticesExcluidos = new Lista<Integer>();
+
+       for(int i = 1; i <= subgrafo.vertices.size(); i++) {
+           for(int j = 0; j < allData.length; j++) {
+               if(i == allData[j]) {
+                   estaNaLista = true;
+                   break;
+               }
+           }
+
+           if(estaNaLista == false) {
+               verticesExcluidos.add(i);
+            }
+
+           estaNaLista = false;
+       }
+
+       int tamanho = verticesExcluidos.size();
+
+       for(int i = 0; i < tamanho; i++) {
+            id = verticesExcluidos.remove(0);
+            subgrafo.removeVertice(id);
+        }
+
+       return subgrafo;
+   }
 
     public int tamanho() {
         return Integer.MIN_VALUE;
