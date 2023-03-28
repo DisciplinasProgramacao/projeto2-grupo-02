@@ -43,6 +43,7 @@ public class GrafoDirecionado extends GrafoMutavel {
 
             origem.addAresta(Integer.parseInt(tokens[1]));
         }
+        fileReader.close();
     }
 
     /**

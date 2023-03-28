@@ -45,6 +45,7 @@ public class GrafoNaoDirecionado extends GrafoMutavel{
             origem.addAresta(Integer.parseInt(tokens[1]));
             destino.addAresta(Integer.parseInt(tokens[0]));
         }
+        fileReader.close();
     }
 
     /**
