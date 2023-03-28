@@ -1,5 +1,7 @@
 package business;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /** 
  * MIT License
@@ -73,19 +75,34 @@ public abstract class Grafo {
 
     public void salvar(String nomeArquivo) {
         File file = new File(nomeArquivo);
+        
+        try {
+        	
+			FileWriter fw = new FileWriter(file);
 
-        Vertice[] abbVertices = vertices.allElements(new Vertice[] {});
+			Vertice[] abbVertices = vertices.allElements(new Vertice[] {});
 
-        for (Vertice vertice : abbVertices) {
-
-            Aresta[] allArestas = vertice.todasAsArestas();
-
-            for (Aresta aresta : allArestas) {
-
-                Vertice destino = new Vertice(aresta.destino());
-
-            }
-        }
+	        for (Vertice vertice : abbVertices) {
+	
+	            Aresta[] allArestas = vertice.todasAsArestas();
+	
+	            for (Aresta aresta : allArestas) {
+	
+	                Vertice destino = new Vertice(aresta.destino());
+	                
+	                if (aresta.peso() == -1) {
+	                	fw.write(vertice.getId() + " " + destino.getId());
+	                } else {
+	                	fw.write(vertice.getId() + " " + destino.getId() + " " + aresta.peso());
+	                }
+	            }
+	        }
+	        
+	        fw.close();
+	        
+        } catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     /**
