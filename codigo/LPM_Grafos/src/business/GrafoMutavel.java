@@ -44,10 +44,12 @@ public abstract class GrafoMutavel extends Grafo {
      * @return Vértice removido
      */
     public Vertice removeVertice(int id) {
+        //Remover arestas que apontam para o vértice removido antes de remover o vértie.
         return vertices.remove(id);
     }
 
     public abstract boolean addAresta(int origem, int destino, int peso);
+
 
     public abstract Aresta removeAresta(int origem, int destino);
 }
