@@ -1,4 +1,5 @@
 package business;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,21 +35,21 @@ public abstract class Grafo {
     public final String nome;
     protected ABB<Vertice> vertices;
 
-//    public static Grafo grafoCompleto(int ordem) {
+    // public static Grafo grafoCompleto(int ordem) {
 
-//        Grafo g = new Grafo("GrafoCompleto");
+    // Grafo g = new Grafo("GrafoCompleto");
 
-//        // Criação dos vertices
-//        for (int i = 1; i <= ordem; i++) {
-//            g.addVertice(i);
-//        }
-//        // Criação das arestas
-//        for (int i = 1; i < ordem; i++)
-//            for (int j = i + 1; i <= ordem; j++) {
-//                g.addAresta(i, j, 0);
-//            }
-//        return g;
-//    }
+    // // Criação dos vertices
+    // for (int i = 1; i <= ordem; i++) {
+    // g.addVertice(i);
+    // }
+    // // Criação das arestas
+    // for (int i = 1; i < ordem; i++)
+    // for (int j = i + 1; i <= ordem; j++) {
+    // g.addAresta(i, j, 0);
+    // }
+    // return g;
+    // }
 
     /**
      * Construtor. Cria um grafo vazio com um nome escolhido pelo usuário. Em caso
@@ -75,34 +76,34 @@ public abstract class Grafo {
 
     public void salvar(String nomeArquivo) {
         File file = new File(nomeArquivo);
-        
+
         try {
-        	
-			FileWriter fw = new FileWriter(file);
 
-			Vertice[] abbVertices = vertices.allElements(new Vertice[] {});
+            FileWriter fw = new FileWriter(file);
 
-	        for (Vertice vertice : abbVertices) {
-	
-	            Aresta[] allArestas = vertice.todasAsArestas();
-	
-	            for (Aresta aresta : allArestas) {
-	
-	                Vertice destino = new Vertice(aresta.destino());
-	                
-	                if (aresta.peso() == -1) {
-	                	fw.write(vertice.getId() + " " + destino.getId());
-	                } else {
-	                	fw.write(vertice.getId() + " " + destino.getId() + " " + aresta.peso());
-	                }
-	            }
-	        }
-	        
-	        fw.close();
-	        
+            Vertice[] abbVertices = vertices.allElements(new Vertice[] {});
+
+            for (Vertice vertice : abbVertices) {
+
+                Aresta[] allArestas = vertice.todasAsArestas();
+
+                for (Aresta aresta : allArestas) {
+
+                    Vertice destino = new Vertice(aresta.destino());
+
+                    if (aresta.peso() == -1) {
+                        fw.write(vertice.getId() + " " + destino.getId());
+                    } else {
+                        fw.write(vertice.getId() + " " + destino.getId() + " " + aresta.peso());
+                    }
+                }
+            }
+
+            fw.close();
+
         } catch (IOException e) {
-			e.printStackTrace();
-		}
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -116,6 +117,7 @@ public abstract class Grafo {
 
     /**
      * Verifica se existe uma aresta entre A e B
+     * 
      * @param verticeA Vertice de partida
      * @param verticeB Vertice de chegada
      * @return A aresta ente A e B ou null caso não exista
@@ -129,46 +131,48 @@ public abstract class Grafo {
         return false;
     }
 
-   /**
-    * Gera um subgrafo a partir das indicações dos vértices do grafo original
-    * @param vertices Lista de vértices do grafo original
-    * @return Um subrgrafos com os vértices da lista
-    */
-   public Grafo subGrafo(Lista<Integer> vertices) {
-       GrafoDirecionado subgrafo = new GrafoDirecionado("Subgrafo de "+this.nome); subgrafo.vertices = this.vertices;
+    /**
+     * Gera um subgrafo a partir das indicações dos vértices do grafo original
+     * 
+     * @param vertices Lista de vértices do grafo original
+     * @return Um subrgrafos com os vértices da lista
+     */
+    public Grafo subGrafo(Lista<Integer> vertices) {
+        GrafoDirecionado subgrafo = new GrafoDirecionado("Subgrafo de " + this.nome);
+        subgrafo.vertices = this.vertices;
 
-       boolean estaNaLista = false;
-       int id;
+        boolean estaNaLista = false;
+        int id;
 
-       Integer[] array = new Integer[vertices.size()];
-       Integer[] allData = vertices.allElements(array);
+        Integer[] array = new Integer[vertices.size()];
+        Integer[] allData = vertices.allElements(array);
 
-       Lista<Integer> verticesExcluidos = new Lista<Integer>();
+        Lista<Integer> verticesExcluidos = new Lista<Integer>();
 
-       for(int i = 1; i <= subgrafo.vertices.size(); i++) {
-           for(int j = 0; j < allData.length; j++) {
-               if(i == allData[j]) {
-                   estaNaLista = true;
-                   break;
-               }
-           }
-
-           if(estaNaLista == false) {
-               verticesExcluidos.add(i);
+        for (int i = 1; i <= subgrafo.vertices.size(); i++) {
+            for (int j = 0; j < allData.length; j++) {
+                if (i == allData[j]) {
+                    estaNaLista = true;
+                    break;
+                }
             }
 
-           estaNaLista = false;
-       }
+            if (estaNaLista == false) {
+                verticesExcluidos.add(i);
+            }
 
-       int tamanho = verticesExcluidos.size();
+            estaNaLista = false;
+        }
 
-       for(int i = 0; i < tamanho; i++) {
+        int tamanho = verticesExcluidos.size();
+
+        for (int i = 0; i < tamanho; i++) {
             id = verticesExcluidos.remove(0);
             subgrafo.removeVertice(id);
         }
 
-       return subgrafo;
-   }
+        return subgrafo;
+    }
 
     public int tamanho() {
         return Integer.MIN_VALUE;
