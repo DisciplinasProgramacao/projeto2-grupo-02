@@ -109,4 +109,12 @@ public class Vertice {
     public boolean visitado(){
         return this.visitado;
     }
+
+    public Lista<Integer> vizinhos(){    
+        
+        
+
+        
+        return null;
+    }
 }

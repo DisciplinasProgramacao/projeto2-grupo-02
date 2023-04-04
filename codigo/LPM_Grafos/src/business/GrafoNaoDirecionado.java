@@ -16,40 +16,9 @@ public class GrafoNaoDirecionado extends GrafoMutavel{
         super(nome);
     }
 
-    /**
-     * Lê conteudo de um arquivo .txt e instancia vértices conforme descrito,
-     * adicionando-os à ABB. Em seguida, adiciona arestas antiparalelas incidindo
-     * entre os vértices de origem e destino.
-     *
-     * @param nomeArquivo Nome do arquivo a ser lido
-     */
-    @Override
-    public void carregar(String nomeArquivo) throws FileNotFoundException {
-        File file = new File(nomeArquivo);
-        Scanner fileReader = new Scanner(file);
-
-        String line = null;
-        String[] tokens;
-        int key;
-
-        while (fileReader.hasNextLine()){
-            line = fileReader.nextLine();
-            tokens = line.split("\\D+");
-
-            Vertice origem = new Vertice(Integer.parseInt(tokens[0]));
-            vertices.add(Integer.parseInt(tokens[0]), origem);
-
-            Vertice destino = new Vertice(Integer.parseInt(tokens[1]));
-            vertices.add(Integer.parseInt(tokens[1]), destino);
-
-            origem.addAresta(Integer.parseInt(tokens[1]));
-            destino.addAresta(Integer.parseInt(tokens[0]));
-        }
-        fileReader.close();
-    }
 
     /**
-     * Adiciona uma aresta antiparalela entre dois vértices do grafo, caso os
+     * Adiciona arestas antiparalelas entre dois vértices do grafo, caso os
      * dois vértices existam no grafo.
      * Caso a aresta já exista, ou algum dos vértices não existir, o comando é
      * ignorado e retorna FALSE.
