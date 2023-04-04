@@ -91,11 +91,8 @@ public abstract class Grafo {
 
                     Vertice destino = new Vertice(aresta.destino());
 
-                    if (aresta.peso() == -1) {
-                        fw.write(vertice.getId() + " " + destino.getId());
-                    } else {
-                        fw.write(vertice.getId() + " " + destino.getId() + " " + aresta.peso());
-                    }
+                    fw.write(vertice.getId() + " " + destino.getId() + " " + aresta.peso());
+                    
                 }
             }
 
