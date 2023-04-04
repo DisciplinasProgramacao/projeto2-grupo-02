@@ -1,6 +1,6 @@
 package business;
 
-public class GrafoCompleto extends GrafoNaoDirecionado {
+public class GrafoCompleto extends Grafo {
 
     private int ordem;
 
@@ -10,14 +10,17 @@ public class GrafoCompleto extends GrafoNaoDirecionado {
 
        // Criação dos vertices
        for (int i = 1; i <= ordem; i++) {
-           this.addVertice(i);
+           vertices.add(i, new Vertice(i))
        }
 
         // Criação das arestas
-        for (int i = 1; i < ordem; i++)
+        for (int i = 1; i < ordem; i++){
+           Vertice v = vertices.find(i);
            for (int j = i + 1; i <= ordem; j++) {
-                this.addAresta(i, j, 0);
+                // this.addAresta(i, j, 0);
+                v.addAresta(j);        
             }
+        }
 
     }
 
