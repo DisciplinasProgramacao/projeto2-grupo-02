@@ -35,21 +35,13 @@ public abstract class Grafo {
     public final String nome;
     protected ABB<Vertice> vertices;
 
-    // public static Grafo grafoCompleto(int ordem) {
+    public static Grafo grafoCompleto(int ordem) {
 
-    // Grafo g = new Grafo("GrafoCompleto");
+        GrafoCompleto g = new GrafoCompleto(ordem, "GrafoCompleto");
 
-    // // Criação dos vertices
-    // for (int i = 1; i <= ordem; i++) {
-    // g.addVertice(i);
-    // }
-    // // Criação das arestas
-    // for (int i = 1; i < ordem; i++)
-    // for (int j = i + 1; i <= ordem; j++) {
-    // g.addAresta(i, j, 0);
-    // }
-    // return g;
-    // }
+        return g;
+
+    }
 
     /**
      * Construtor. Cria um grafo vazio com um nome escolhido pelo usuário. Em caso
