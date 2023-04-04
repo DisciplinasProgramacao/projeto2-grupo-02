@@ -116,8 +116,22 @@ public abstract class Grafo {
         return verticePartida.existeAresta(verticeB);
     }
 
+    /**
+     * Verifica se um grafo é completo, supondo que este seja conexo
+     * @return Resultado da comparação entre a metade do somatório de arestas com a expressão (n*(n-1))/2
+     */
     public boolean completo() {
-        return false;
+        Vertice[] todosVertices = new Vertice[1000]; 
+        vertices.allElements(todosVertices); 
+
+        int n = todosVertices.length;
+        int somatorioArestas = 0;
+
+        for (int i = 0; i < n; i++){
+            somatorioArestas = todosVertices[i].todasAsArestas().length;
+        }
+
+        return (somatorioArestas/2 != (n*(n-1))/2);
     }
 
     /**
