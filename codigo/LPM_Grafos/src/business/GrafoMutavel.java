@@ -24,7 +24,28 @@ public abstract class GrafoMutavel extends Grafo {
      *
      * @param nomeArquivo Nome do arquivo a ser lido
      */
-    public abstract void carregar(String nomeArquivo) throws FileNotFoundException;
+    public void carregar(String nomeArquivo) throws FileNotFoundException {
+        File file = new File(nomeArquivo);
+        Scanner fileReader = new Scanner(file);
+
+        String line = null;
+        String[] tokens;
+        int key;
+
+        while (fileReader.hasNextLine()){
+            line = fileReader.nextLine();
+            tokens = line.split("\\D+");
+
+            Vertice origem = new Vertice(Integer.parseInt(tokens[0]));
+            vertices.add(Integer.parseInt(tokens[0]), origem);
+
+            Vertice destino = new Vertice(Integer.parseInt(tokens[1]));
+            vertices.add(Integer.parseInt(tokens[1]), destino);
+
+            origem.addAresta(Integer.parseInt(tokens[1]));
+        }
+        fileReader.close();
+    }
 
     /**
      * Adiciona um vértice com o id especificado.
@@ -96,4 +117,6 @@ public abstract class GrafoMutavel extends Grafo {
 
 
     public abstract Aresta removeAresta(int origem, int destino);
+
+    
 }
