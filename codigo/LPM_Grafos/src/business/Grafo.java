@@ -170,5 +170,4 @@ public abstract class Grafo {
     public int ordem() {
         return Integer.MIN_VALUE;
     }
-
 }
