@@ -4,6 +4,11 @@ public class GrafoCompleto extends Grafo {
 
     private int ordem;
 
+    /**
+     * Criação do grafo completo
+     * @param ordem
+     * @param nome
+     */
     public GrafoCompleto(int ordem, String nome) {
         super(nome);
         this.ordem = ordem;
