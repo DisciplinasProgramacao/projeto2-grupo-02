@@ -35,14 +35,6 @@ public abstract class Grafo {
     public final String nome;
     protected ABB<Vertice> vertices;
 
-    public static Grafo grafoCompleto(int ordem) {
-
-        GrafoCompleto g = new GrafoCompleto(ordem, "GrafoCompleto");
-
-        return g;
-
-    }
-
     /**
      * Construtor. Cria um grafo vazio com um nome escolhido pelo usuário. Em caso
      * de nome não informado
@@ -54,6 +46,14 @@ public abstract class Grafo {
         else
             this.nome = nome;
         this.vertices = new ABB<>();
+    }
+
+    public static Grafo grafoCompleto(int ordem) {
+
+        GrafoCompleto g = new GrafoCompleto(ordem, "GrafoCompleto");
+
+        return g;
+
     }
 
     /**
@@ -139,38 +139,36 @@ public abstract class Grafo {
      * @param vertices Lista de vértices do grafo original
      * @return Um subrgrafos com os vértices da lista
      */
-    public Grafo subGrafo(Lista<Integer> vertices) {
-        GrafoDirecionado subgrafo = new GrafoDirecionado("Subgrafo de " + this.nome);
-        subgrafo.vertices = this.vertices;
+    public Grafo subGrafo(Lista<Integer> verticesSubgrafo) {
+        Vertice[] arrayVertice = new Vertice[vertices.size];
+        Vertice[] verticesDoGrafo = vertices.allElements(arrayVertice);
+
+        Integer[] arrayVerticesSubgrafo = new Integer[verticesSubgrafo.size];
+        Integer[] verticesDoSubgrafo = verticesSubgrafo.allElements(arrayVerticesSubgrafo);
 
         boolean estaNaLista = false;
         int id;
 
-        Integer[] array = new Integer[vertices.size()];
-        Integer[] allData = vertices.allElements(array);
+        GrafoDirecionado subgrafo = new GrafoDirecionado("Subgrafo de " + this.nome);
+        
+        for(int i = 0; i < verticesDoGrafo.length; i++) {
+            subgrafo.vertices.add(i + 1, verticesDoGrado[i]);
+        }
 
-        Lista<Integer> verticesExcluidos = new Lista<Integer>();
-
-        for (int i = 1; i <= subgrafo.vertices.size(); i++) {
-            for (int j = 0; j < allData.length; j++) {
-                if (i == allData[j]) {
+        for(int i = 1; i <= subgrafo.vertices.size(); i++) {
+            for(int j = 0; j < verticesDoSubgrafo.length; j++) {
+                if(i == verticesDoSubgrafo[j]) {
                     estaNaLista = true;
+                    id = verticesDoSubgrafo[j];
                     break;
                 }
             }
 
-            if (estaNaLista == false) {
-                verticesExcluidos.add(i);
+            if(estaNaLista == true) {
+                subgrafo.removeVertice(id);
             }
 
             estaNaLista = false;
-        }
-
-        int tamanho = verticesExcluidos.size();
-
-        for (int i = 0; i < tamanho; i++) {
-            id = verticesExcluidos.remove(0);
-            subgrafo.removeVertice(id);
         }
 
         return subgrafo;

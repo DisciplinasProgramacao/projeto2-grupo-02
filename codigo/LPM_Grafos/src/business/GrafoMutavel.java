@@ -73,7 +73,6 @@ public abstract class GrafoMutavel extends Grafo {
                 todosVertices[i].removeAresta(id);
             }
         }
-
         return vertices.remove(id);
     }
 
