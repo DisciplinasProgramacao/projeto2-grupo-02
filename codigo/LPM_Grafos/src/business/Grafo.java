@@ -152,7 +152,7 @@ public abstract class Grafo {
         GrafoDirecionado subgrafo = new GrafoDirecionado("Subgrafo de " + this.nome);
         
         for(int i = 0; i < verticesDoGrafo.length; i++) {
-            subgrafo.vertices.add(i + 1, verticesDoGrado[i]);
+            subgrafo.vertices.add(i + 1, verticesDoGrafo[i]);
         }
 
         for(int i = 1; i <= subgrafo.vertices.size(); i++) {
