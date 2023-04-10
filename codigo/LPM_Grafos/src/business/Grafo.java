@@ -152,19 +152,20 @@ public abstract class Grafo {
         GrafoDirecionado subgrafo = new GrafoDirecionado("Subgrafo de " + this.nome);
         
         for(int i = 0; i < verticesDoGrafo.length; i++) {
-            subgrafo.vertices.add(i + 1, verticesDoGrafo[i]);
+            subgrafo.vertices.add(i + 1, new Vertice(verticesDoGrafo[i].getId()));
         }
 
         for(int i = 1; i <= subgrafo.vertices.size(); i++) {
             for(int j = 0; j < verticesDoSubgrafo.length; j++) {
                 if(i == verticesDoSubgrafo[j]) {
                     estaNaLista = true;
-                    id = verticesDoSubgrafo[j];
                     break;
                 }
+                
+                id = i;
             }
 
-            if(estaNaLista == true) {
+            if(estaNaLista == false) {
                 subgrafo.removeVertice(id);
             }
 
