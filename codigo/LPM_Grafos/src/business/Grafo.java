@@ -140,14 +140,14 @@ public abstract class Grafo {
      * @return Um subrgrafos com os vértices da lista
      */
     public Grafo subGrafo(Lista<Integer> verticesSubgrafo) {
-        Vertice[] arrayVertice = new Vertice[vertices.size];
+        Vertice[] arrayVertice = new Vertice[vertices.size()];
         Vertice[] verticesDoGrafo = vertices.allElements(arrayVertice);
 
-        Integer[] arrayVerticesSubgrafo = new Integer[verticesSubgrafo.size];
+        Integer[] arrayVerticesSubgrafo = new Integer[verticesSubgrafo.size()];
         Integer[] verticesDoSubgrafo = verticesSubgrafo.allElements(arrayVerticesSubgrafo);
 
         boolean estaNaLista = false;
-        int id;
+        int id = 0;
 
         GrafoDirecionado subgrafo = new GrafoDirecionado("Subgrafo de " + this.nome);
         
