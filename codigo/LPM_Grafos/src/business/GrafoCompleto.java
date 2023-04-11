@@ -21,7 +21,7 @@ public class GrafoCompleto extends Grafo {
         // Criação das arestas
         for (int i = 1; i < ordem; i++){
            Vertice v = vertices.find(i);
-           for (int j = i + 1; i <= ordem; j++) {
+           for (int j = i + 1; j <= ordem; j++) {
                 // this.addAresta(i, j, 0);
                 v.addAresta(j);        
             }

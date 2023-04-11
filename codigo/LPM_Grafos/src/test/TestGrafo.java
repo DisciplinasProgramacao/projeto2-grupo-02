@@ -1,5 +1,3 @@
-package test;
-
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +15,7 @@ class TestGrafo {
 	@BeforeEach
 	void iniciaGrafo () throws Exception {
 		grafo = new GrafoDirecionado("Novo Grafo");
-		grafo.carregar("C:\\Users\\1405661\\Desktop\\ProjetoGrafo\\codigo\\LPM_Grafos\\src\\direcionado.txt");
+		grafo.carregar("direcionado.txt");
 		arrayVertice = new Vertice[grafo.getVertices().size()];
 		verticesGrafo = grafo.getVertices().allElements(arrayVertice);
 	}
@@ -54,27 +52,39 @@ class TestGrafo {
 	void testRemoveVertice() {
 		assertEquals(verticesGrafo[14], grafo.removeVertice(15));
 	}
+
+	@Test
+	void testOrdemGrafo() {
+		assertEquals(15, grafo.ordem());
+	}
+
+	@Test
+	void testGrafoCompleto() {
+		Grafo g = Grafo.grafoCompleto(3);
+		assertTrue(g.completo());
+	}
+
+	@Test
+	void testAddArestaGrafoDirecionado() {
+		assertTrue(grafo.addAresta(1, 6, -1));	
+	}
+
+	@Test
+	void testRemoveArestaGrafoDirecionado() {
+		assertEquals(verticesGrafo[0].getArestas().find(2), grafo.removeAresta(verticesGrafo[0].getId(),2));
+	}
 	
-	
-	
-//	@Test
-//	void testCriaSubGrafo() {
-//		Lista<Integer> vertices = new Lista<Integer>();
-//		vertices.add(1);
-//		
-//		GrafoDirecionado novoGrafo = new GrafoDirecionado("Novo Grafo");
-//		novoGrafo.addVertice(1);
-//		novoGrafo.addVertice(2);
-//		novoGrafo.addAresta(1, 2, -1);
-//		
-//		
-//		Grafo subGrafo = novoGrafo.subGrafo(vertices);
-//		
-//		Vertice[] arrayVertice = new Vertice[subGrafo.getVertices().size()];
-//		Vertice[] verticesSubgrafo = subGrafo.getVertices().allElements(arrayVertice);
-//		
-//		
-//		assertEquals(verticesSubgrafo[0], subGrafo.existeVertice(1));
-//	}
+	@Test
+	void testCriaSubGrafo() {
+		Lista<Integer> vertices = new Lista<Integer>();
+		vertices.add(1);
+			
+		Grafo subGrafo = novoGrafo.subGrafo(vertices);
+		
+		Vertice[] arrayVertice = new Vertice[subGrafo.getVertices().size()];
+		Vertice[] verticesSubgrafo = subGrafo.getVertices().allElements(arrayVertice);
+		
+		assertEquals(verticesSubgrafo[0], subGrafo.existeVertice(1));
+	}
 
 }

@@ -67,7 +67,7 @@ public abstract class GrafoMutavel extends Grafo {
         Vertice[] todosVertices = vertices.allElements(array);
         Aresta temp;
 
-        for(int i = 1; i <= todosVertices.length; i++) {
+        for(int i = 0; i < todosVertices.length; i++) {
             temp = todosVertices[i].existeAresta(id);
             if(temp != null) {
                 todosVertices[i].removeAresta(id);

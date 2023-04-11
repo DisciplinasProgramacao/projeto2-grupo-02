@@ -132,7 +132,7 @@ public abstract class Grafo {
             total += vertice.grau();
         }
 
-        return (total != (n*(n-1))/2);
+        return (total == (n*(n-1))/2);
     }
 
     /**
