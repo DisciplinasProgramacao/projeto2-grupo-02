@@ -182,4 +182,8 @@ public abstract class Grafo {
     public int ordem() {
         return this.vertices.size();
     }
+
+    public ABB<Vertice> getVertices() {
+		return vertices;
+	}
 }
