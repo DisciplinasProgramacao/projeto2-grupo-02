@@ -229,4 +229,8 @@ public abstract class Grafo {
 
         return subGrafo(verticesVisitados);
     }
+
+    public ABB<Vertice> getVertices() {
+		return vertices;
+	}
 }
