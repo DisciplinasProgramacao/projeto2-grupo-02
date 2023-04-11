@@ -5,7 +5,7 @@ public class GrafoCompleto extends Grafo {
     private int ordem;
 
     /**
-     * Criação do grafo completo
+     * Cria um grafo completo
      * @param ordem
      * @param nome
      */

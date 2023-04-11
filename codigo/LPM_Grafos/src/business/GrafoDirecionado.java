@@ -41,10 +41,15 @@ public class GrafoDirecionado extends GrafoMutavel {
         return adicionou;
     }
 
-    // TODO Implementar método
+    /**
+     * Remove aresta do grafo
+     * @param origem Índice do vértice de onde se origina a aresta a ser removida
+     * @param destino Índice do vértice aonde aponta a aresta a ser removida
+     * @return aresta removida
+     */
     @Override
     public Aresta removeAresta(int origem, int destino) {
-        return null;
+        return vertices.find(origem).getArestas().remove(destino);
     }
 
 }

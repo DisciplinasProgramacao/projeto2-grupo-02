@@ -70,7 +70,7 @@ public class Vertice {
     public Aresta existeAresta(int destino){
         return arestas.find(destino);
     }
-    
+
     /**
      * Remove e retorna a aresta para o destino indicado. Retorna null caso não exista a aresta.
      * @param destino Destino da aresta a ser removida.
@@ -79,11 +79,18 @@ public class Vertice {
     public Aresta removeAresta(int destino){
         return this.arestas.remove(destino);
     }
-  
+
+    /**
+     * @return array contendo todas as arestas incidentes sobre o vértice
+     */
     public Aresta[] todasAsArestas() {
-    	return this.arestas.allElements(new Aresta[] {});
+        Aresta[] todasAsArestas = new Aresta[arestas.size()];
+    	return this.arestas.allElements(todasAsArestas);
     }
-  
+
+    /**
+     * @return grau do vértice, ou seja, quantidade de arestas sobre ele incidentes
+     */
     public int grau(){
         return this.arestas.size();
     }
@@ -110,11 +117,25 @@ public class Vertice {
         return this.visitado;
     }
 
+    /**
+     * Procura os vizinhos do vértice
+     * @return Lista contendo os índices de todos os vizinhos do vértice
+     */
     public Lista<Integer> vizinhos(){    
-        
-        
+        Aresta[] arestas = todasAsArestas();
+        Lista<Integer> vizinhos = new Lista<>();
 
-        
-        return null;
+        for (int i = 0; i < arestas.length; i++){
+            vizinhos.add(arestas[i].destino());
+        }
+
+        return vizinhos;
     }
-}
+
+     /**
+      * @return Retorna árvore de arestas do vértice
+      */
+     public ABB<Aresta> getArestas() {
+         return arestas;
+     }
+ }

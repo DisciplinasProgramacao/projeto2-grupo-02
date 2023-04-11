@@ -41,9 +41,15 @@ public class GrafoNaoDirecionado extends GrafoMutavel{
         return adicionou;
     }
 
-    // TODO Implementar método
+    /**
+     * Remove aresta do grafo, considerando a existência de arestas antiparalelas, uma vez que o grafo é não direcionado
+     * @param origem Índice do vértice de onde se origina a aresta a ser removida
+     * @param destino Índice do vértice aonde aponta a aresta a ser removida
+     * @return aresta removida
+     */
     @Override
     public Aresta removeAresta(int origem, int destino) {
-        return null;
+        vertices.find(destino).getArestas().remove(origem);
+        return vertices.find(origem).getArestas().remove(destino);
     }
 }

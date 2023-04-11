@@ -26,5 +26,7 @@ public class App {
                 grafo.carregar(filename);
                 break;
         }
+
+        scan.close();
     }
 }

@@ -53,7 +53,6 @@ public abstract class Grafo {
         GrafoCompleto g = new GrafoCompleto(ordem, "GrafoCompleto");
 
         return g;
-
     }
 
     /**
@@ -136,8 +135,8 @@ public abstract class Grafo {
     /**
      * Gera um subgrafo a partir das indicações dos vértices do grafo original
      * 
-     * @param vertices Lista de vértices do grafo original
-     * @return Um subrgrafos com os vértices da lista
+     * @param verticesSubgrafo Lista de vértices do grafo original
+     * @return Um subrgrafo com os vértices da lista
      */
     public Grafo subGrafo(Lista<Integer> verticesSubgrafo) {
         Vertice[] arrayVertice = new Vertice[vertices.size()];
@@ -149,37 +148,85 @@ public abstract class Grafo {
         boolean estaNaLista = false;
         int id = 0;
 
-        GrafoDirecionado subgrafo = new GrafoDirecionado("Subgrafo de " + this.nome);
+        GrafoNaoDirecionado subgrafo = new GrafoNaoDirecionado("Subgrafo de " + this.nome);
         
-        for(int i = 0; i < verticesDoGrafo.length; i++) {
+        for (int i = 0; i < verticesDoGrafo.length; i++) {
             subgrafo.vertices.add(i + 1, new Vertice(verticesDoGrafo[i].getId()));
         }
 
-        for(int i = 1; i <= subgrafo.vertices.size(); i++) {
-            for(int j = 0; j < verticesDoSubgrafo.length; j++) {
-                if(i == verticesDoSubgrafo[j]) {
+        for (int i = 1; i <= subgrafo.vertices.size(); i++) {
+            for (int j = 0; j < verticesDoSubgrafo.length; j++) {
+                if (i == verticesDoSubgrafo[j]) {
                     estaNaLista = true;
                     break;
                 }
-                
                 id = i;
             }
-
-            if(estaNaLista == false) {
+            if (!estaNaLista) {
                 subgrafo.removeVertice(id);
             }
-
             estaNaLista = false;
         }
-
         return subgrafo;
     }
 
+    /**
+     * Calcula e retorna a quantidade total de arestas presentes no grafo
+     */
     public int tamanho() {
-        return Integer.MIN_VALUE;
+        int totalArestas = 0;
+
+        for (int i = 0; i < vertices.size(); i ++){
+            Vertice[] todosVertices = new Vertice[vertices.size()];
+            vertices.allElements(todosVertices);
+
+            for (int j = 0; j < todosVertices[i].todasAsArestas().length; j++){
+                totalArestas++;
+            }
+        }
+
+        return totalArestas;
     }
 
+    /**
+     * Retorna a quantidade total de vértices presentes no grafo
+     */
     public int ordem() {
-        return this.vertices.size();
+        return vertices.size();
+    }
+
+    /**
+     * Realiza busca em largura/amplitude no grafo
+     *
+     * @param idVerticeInicio id do vértice a partir do qual se iniciará a busca
+     * @return Subgrafo contendo os vértices do caminho percorrido, ou null caso o vértice
+     * não exista no grafo
+     */
+    public Grafo bfs(int idVerticeInicio){
+        return null;
+    }
+
+    /**
+     * Realiza busca em profundidade no grafo
+     *
+     * @param idVerticeInicio id do vértice a partir do qual se iniciará a busca
+     * @return Subgrafo contendo os vértices do caminho percorrido, ou null caso o vértice
+     * não exista no grafo
+     */
+    public Grafo dfs(int idVerticeInicio, Lista<Integer> verticesVisitados) {
+        int atual = idVerticeInicio;
+        vertices.find(atual).visitar();
+
+        Integer[] vizinhos = new Integer[vertices.find(atual).vizinhos().size()];
+        vertices.find(atual).vizinhos().allElements(vizinhos);
+
+        for (int i = 0; i < vizinhos.length; i++) {
+            if (! vertices.find(vizinhos[i]).visitado() ){
+                dfs(vizinhos[i], verticesVisitados);
+                vertices.find(vizinhos[i]).visitar();
+            }
+        }
+
+        return subGrafo(verticesVisitados);
     }
 }
