@@ -3,6 +3,9 @@ package business;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /** 
  * MIT License
@@ -202,8 +205,38 @@ public abstract class Grafo {
      * @return Subgrafo contendo os vértices do caminho percorrido, ou null caso o vértice
      * não exista no grafo
      */
-    public Grafo bfs(int idVerticeInicio){
-        return null;
+    public Grafo bfs(int idVerticeInicio) {
+
+        Lista<Integer> visitados = new Lista<>();
+
+        visitados.add(idVerticeInicio);
+
+        LinkedList<Integer> fila = new LinkedList<>();
+
+        fila.add(idVerticeInicio);
+
+        while (fila.size() != 0) {
+            idVerticeInicio = fila.poll();
+
+            // Cria um vetor com o tamanho igual ao numero de vizinhos do vertice
+            Integer[] vizinhos = new Integer[vertices.find(idVerticeInicio).vizinhos().size()];
+
+            // Preenche o vetor com cada vizinho do vertice
+            vertices.find(idVerticeInicio).vizinhos().allElements(vizinhos);
+
+            for (int i = 0; i < vizinhos.length; i++) {
+
+                int vertice = vizinhos[i];
+
+                if (!vertices.find(vertice).visitado()) {
+                    vertices.find(vertice).visitar();
+                    fila.add(vertice);
+                    visitados.add(vertice);
+                }
+            }
+        }
+
+        return subGrafo(visitados);
     }
 
     /**
