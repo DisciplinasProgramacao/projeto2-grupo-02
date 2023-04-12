@@ -7,7 +7,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Insira o nome do arquivo: ");
+        System.out.println("Insira o nome do arquivo. Você pode encontrar arquivos de grafos na pasta projeto2-grupo-02\\codigo\\LPM_Grafos\\src\\grafos: ");
         String filename = scan.nextLine();
 
         System.out.println("Selecione o tipo de grafo: ");
