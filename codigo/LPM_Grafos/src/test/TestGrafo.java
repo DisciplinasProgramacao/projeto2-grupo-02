@@ -1,3 +1,5 @@
+package test;
+
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,13 +13,23 @@ class TestGrafo {
 	public static GrafoMutavel grafo;
 	public static Vertice[] arrayVertice;
 	public static Vertice[] verticesGrafo;
+	
+	public static GrafoMutavel grafoNaoDirecionado;
+	public static Vertice[] arrayVerticeNaoDirecionado;
+	public static Vertice[] verticesGrafoNaoDirecionado;
 
 	@BeforeEach
-	void iniciaGrafo () throws Exception {
+	void iniciaGrafo () throws Exception {	
 		grafo = new GrafoDirecionado("Novo Grafo");
-		grafo.carregar("direcionado.txt");
+		grafo.carregar("direcionado.txt");			//Colocar o caminho correto para o arquivo
 		arrayVertice = new Vertice[grafo.getVertices().size()];
 		verticesGrafo = grafo.getVertices().allElements(arrayVertice);
+		
+		grafoNaoDirecionado = new GrafoNaoDirecionado("Grafo Nao Direcionado");
+		grafoNaoDirecionado.carregar("nao-direcionado.txt");			//Colocar o caminho correto para o arquivo
+		arrayVerticeNaoDirecionado = new Vertice[grafoNaoDirecionado.getVertices().size()];
+		verticesGrafoNaoDirecionado = grafoNaoDirecionado.getVertices().allElements(arrayVerticeNaoDirecionado);
+		
 	}
 	
 	
@@ -75,11 +87,22 @@ class TestGrafo {
 	}
 	
 	@Test
+	void testAddArestaGrafoNaoDirecionado() {
+		assertTrue(grafoNaoDirecionado.addAresta(2, 3, -1));
+	}
+	
+	@Test
+	void testRemoveArestaGrafoNaoDirecionado() {
+		assertEquals(verticesGrafoNaoDirecionado[0].getArestas().find(2), grafoNaoDirecionado.removeAresta(verticesGrafoNaoDirecionado[0].getId(),2));
+	}
+	
+	
+	@Test
 	void testCriaSubGrafo() {
 		Lista<Integer> vertices = new Lista<Integer>();
 		vertices.add(1);
 			
-		Grafo subGrafo = novoGrafo.subGrafo(vertices);
+		Grafo subGrafo = grafo.subGrafo(vertices);
 		
 		Vertice[] arrayVertice = new Vertice[subGrafo.getVertices().size()];
 		Vertice[] verticesSubgrafo = subGrafo.getVertices().allElements(arrayVertice);
