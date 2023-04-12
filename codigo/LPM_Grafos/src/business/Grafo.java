@@ -123,7 +123,7 @@ public abstract class Grafo {
      * @return Resultado da comparação entre o somatório de arestas com a expressão (n*(n-1))/2
      */
     public boolean completo() {
-        Vertice[] todosVertices = new Vertice[1000]; 
+        Vertice[] todosVertices = new Vertice[vertices.size()]; 
         todosVertices = vertices.allElements(todosVertices); 
         int n = ordem();
         int total = 0;
