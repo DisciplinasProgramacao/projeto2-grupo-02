@@ -26,6 +26,26 @@ public class App {
                 grafo.carregar(filename);
                 break;
         }
+        
+
+        System.out.println("Escolha uma aresta para ser removida.");
+        System.out.println("\nOrigem: ");
+        int removerArestaOrigem = Integer.parseInt(scan.nextLine());
+        System.out.println("\nDestino: ");
+        int removerArestaDestino = Integer.parseInt(scan.nextLine());
+
+        grafo.removeAresta(removerArestaOrigem, removerArestaDestino);
+
+        System.out.println("Escolha a origem e destino de uma nova aresta a ser adicionada.");
+        System.out.println("\nOrigem: ");
+        int adicionarArestaOrigem = Integer.parseInt(scan.nextLine());
+        System.out.println("\nDestino: ");
+        int adicionarArestaDestino = Integer.parseInt(scan.nextLine());
+        
+        grafo.addAresta(adicionarArestaOrigem, removerArestaDestino, -1);
+
+        grafo.salvar(filename);
+        System.out.println("As alterações no grafo foram salvas!");
 
         scan.close();
     }
